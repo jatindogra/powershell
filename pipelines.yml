@@ -18,8 +18,10 @@ pipelines:
 
         execution:
           onExecute:
-            - echo "hello"        
-            
+            - echo "hello"      
+            - add_run_files -sources "$res_myRepo_resourcePath" -name repo_pipe   
+            - add_pipeline_files -sources "$res_myRepo_resourcePath" -name vijay
+   
       - name: functions2
         type: PowerShell
         configuration:          
