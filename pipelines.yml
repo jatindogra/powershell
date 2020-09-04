@@ -49,7 +49,6 @@ pipelines:
             - add_run_variables "scm=gitRepo" 'runVariable1="A string with spaces."' runVariable2='A string with $.'
             - add_pipeline_variables vijay="kumar.      1"   
             - add_pipeline_variables "scm=gitRepo" 'runVariable1="A string with spaces."' runVariable2='A string with $.'
-            - send_notification slack
             - $testvariable
             - $vijay
             - Get-Variable | format-table
