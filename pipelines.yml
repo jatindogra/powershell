@@ -3,30 +3,18 @@ resources:
   - name: myRepo
     type: GitRepo
     configuration:
-      gitProvider: vijay_git
-      path: vijayreddy1991/powershell
-      
-  - name: winAuto_image
-    type: Image
-    configuration:
-      registry: vijay_docker
-      imageName: shippabledocker/jfreq_win
-      imageTag: latest
+      gitProvider: jatin_gh
+      path: jatindogra/powershell
 
 pipelines:
 
-  - name: vijay_pipeline
+  - name: jatin_pipeline
     steps:  
       - name: functions
         type: PowerShell
-        configuration:
-          nodePool: aws_windows
-          integrations:
-            - name: slack            
+        configuration:         
           inputResources:
             - name: myRepo
-          outputResources:
-            - name: winAuto_image
 
         execution:
           onExecute:
@@ -65,7 +53,6 @@ pipelines:
             - $testvariable
             - $vijay
             - Get-Variable | format-table
-            - write_output winAuto_image "imageTag=$run_id"    
             - choco install python3
             - python --version
             - python -m pip install --upgrade pip
@@ -112,8 +99,7 @@ pipelines:
             
       - name: functions2
         type: PowerShell
-        configuration:
-          nodePool: aws_windows             
+        configuration:          
           inputSteps:
             - name: functions
         execution:
@@ -126,8 +112,7 @@ pipelines:
             
       - name: functions3
         type: PowerShell
-        configuration:
-          nodePool: aws_windows             
+        configuration:         
           inputSteps:
             - name: functions2
         execution:
